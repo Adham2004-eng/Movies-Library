@@ -9,7 +9,7 @@ import {
   Paper,
   InputLabel,
   FormControl,
-  Rating
+  Rating,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useFilteredMovies } from "../Action/useFilterMovies";
@@ -23,7 +23,7 @@ export type FormValues = {
   quality?: string;
   minimum_rating?: number;
   query_term?: string;
-  genre?: string[];
+  genre?: string; // ✅ Changed from string[] to string
   sort_by?: string;
   order_by?: "asc" | "desc";
 };
@@ -104,7 +104,7 @@ const FilterMovies = () => {
   useEffect(() => {
     const formattedFilters = {
       ...filters,
-      genre: filters.genre?.join(",") || undefined,
+      genre: filters.genre || undefined, // ✅ no more join
       sort_by: watchedSortBy || undefined,
       order_by: watchedOrderBy || undefined,
       page: currentPage,
@@ -113,17 +113,9 @@ const FilterMovies = () => {
   }, [filters, currentPage, watchedSortBy, watchedOrderBy, fetchFilteredMovies]);
 
   const onSubmit = (data: FormValues) => {
-    setFilters({
-      ...data,
-      genre: Array.isArray(data.genre)
-        ? data.genre
-        : typeof data.genre === "string"
-        ? [data.genre]
-        : [],
-    });
+    setFilters(data); // ✅ no need to convert genre to array
   };
 
- 
   return (
     <Box sx={{ mt: 6, px: { xs: 2, sm: 3 } }}>
       <Paper
@@ -186,8 +178,7 @@ const FilterMovies = () => {
             <FormControl variant="filled" fullWidth>
               <InputLabel sx={{ color: "#aaa" }}>Genres</InputLabel>
               <Select
-                multiple
-                defaultValue={[]}
+                defaultValue=""
                 {...register("genre")}
                 sx={{
                   backgroundColor: "#222",
@@ -196,6 +187,7 @@ const FilterMovies = () => {
                 }}
                 MenuProps={menuStyles}
               >
+                <MenuItem value="">All Genres</MenuItem>
                 {genres.map((g) => (
                   <MenuItem key={g} value={g}>
                     {g}
