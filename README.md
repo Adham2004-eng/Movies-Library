@@ -1,69 +1,83 @@
-# React + TypeScript + Vite
+# 🎬 Movies Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive movie browsing web app built with **React**, **TypeScript**, and **Material UI**, featuring real-time search, dynamic filtering, and IMDb-based sorting. This app consumes the [YTS API](https://yts.mx/api) to provide up-to-date movie data and user-friendly interactions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- ✅ Responsive design (mobile & desktop)
+- 🔍 Real-time movie search with autocomplete
+- 🎯 Filter movies by genre, quality, IMDb rating, and sort order
+- ⭐ Browse trending & top-rated movies
+- 📄 Pagination for large results
+- ⚛️ Built with React + TypeScript + MUI
+- 🧾 Validated filter forms using React Hook Form
+- 📦 API-driven using YTS movie API
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📸 Screenshots
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+> Add screenshots or demo GIFs here to show off your UI.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Technologies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React**
+- **TypeScript**
+- **Material UI**
+- **React Hook Form**
+- **Axios**
+- **React Router**
+- **YTS.mx API**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 🧑‍💻 Getting Started
+
+1. **Clone the repo**:
+
+```bash
+git clone https://github.com/Adham2004-eng/movies-library.git
+cd movies-library
+Install dependencies:
+
+bash
+Copy
+Edit
+npm install
+Run the app:
+
+bash
+Copy
+Edit
+npm run dev
+Open http://localhost:5173 in your browser.
+
+📁 Folder Structure
+bash
+Copy
+Edit
+src/
+├── components/         # Reusable UI components
+├── pages/              # Page views (Home, MovieDetails, etc.)
+├── actions/            # Custom hooks and logic (e.g., useFilteredMovies)
+├── api/                # API request functions
+├── types/              # TypeScript interfaces & types
+├── App.tsx             # Main app component
+└── main.tsx            # App entry point
+🔗 API Reference
+YTS API Documentation
+
+📄 License
+This project is licensed under the MIT License.
+
+👨‍💻 Author
+Adham Ramy
+GitHub: Adham2004-eng
+
+yaml
+Copy
+Edit
