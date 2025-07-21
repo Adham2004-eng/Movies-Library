@@ -11,8 +11,7 @@ const MovieDetails = () => {
   const movieId = useMemo(() => parseInt(id || "0"), [id]);
 
   const { movie, isLoading } = useMovieDetails(movieId);
-  const { suggestions, isLoading: isSuggestionsLoading } =
-    useSuggestions(movieId);
+  const { suggestions, isLoading: isSuggestionsLoading } = useSuggestions(movieId);
 
   if (isLoading || !movie) {
     return (
@@ -43,8 +42,8 @@ const MovieDetails = () => {
         background: `linear-gradient(to right, rgba(10,10,10,0.95) 30%, rgba(10,10,10,0.85)), url(${movie.medium_cover_image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        px: { xs: 2, md: 10 },
-        py: { xs: 6, md: 10 },
+        px: { xs: 2, sm: 4, md: 10 },
+        py: { xs: 6, sm: 8, md: 10 },
         overflowY: "auto",
       }}
     >
@@ -52,7 +51,7 @@ const MovieDetails = () => {
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
-          gap: 6,
+          gap: { xs: 4, md: 6 },
           alignItems: { xs: "center", md: "flex-start" },
         }}
       >
@@ -61,7 +60,7 @@ const MovieDetails = () => {
           src={movie.medium_cover_image}
           alt={movie.title}
           sx={{
-            width: { xs: "70%", sm: "300px" },
+            width: { xs: "80%", sm: "300px" },
             borderRadius: 3,
             boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
             transition: "transform 0.3s ease-in-out",
@@ -71,7 +70,7 @@ const MovieDetails = () => {
 
         <Box sx={{ flex: 1 }}>
           <Typography
-            variant="h3"
+            variant="h4"
             sx={{ fontWeight: "bold", mb: 1, color: "#f5f5f5" }}
           >
             {movie.title}
@@ -122,7 +121,7 @@ const MovieDetails = () => {
           </Typography>
 
           {movie.torrents && movie.torrents.length > 0 && (
-            <Stack direction="row" spacing={2} mb={2}>
+            <Stack direction="row" spacing={2} mb={2} flexWrap="wrap">
               {movie.torrents.map((torrent, index) => (
                 <Chip
                   key={index}
@@ -133,6 +132,7 @@ const MovieDetails = () => {
                     fontSize: 12,
                     fontWeight: "bold",
                     border: "1px solid #555",
+                    mb: 1,
                   }}
                 />
               ))}
@@ -168,15 +168,16 @@ const MovieDetails = () => {
               position: "relative",
               width: "100%",
               maxWidth: 500,
-              height: 280,
+              height: { xs: 200, sm: 280 },
               mt: 4,
               borderRadius: 2,
               overflow: "hidden",
               boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+              mx: "auto",
             }}
           >
             <iframe
-              src={`https://www.youtube.com/embed/${movie.yt_trailer_code}`}
+              src={trailerUrl}
               title="YouTube trailer"
               allowFullScreen
               style={{
@@ -210,6 +211,7 @@ const MovieDetails = () => {
                   borderRadius: 2,
                   objectFit: "cover",
                   boxShadow: "0 6px 20px rgba(0,0,0,0.5)",
+                  flexShrink: 0,
                 }}
               />
             ))}
