@@ -14,7 +14,6 @@ import {
   Paper,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FilterListIcon from "@mui/icons-material/FilterList";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
@@ -177,16 +176,7 @@ const Navbar: React.FC = () => {
 
 
           <Box display="flex" alignItems="center" gap={1}>
-            <IconButton
-              color="inherit"
-              aria-label="account"
-              sx={{
-                transition: "0.3s",
-                "&:hover": { color: "red", transform: "scale(1.1)" },
-              }}
-            >
-              <AccountCircleIcon />
-            </IconButton>
+           
 
 
             {!isMdUp && (
