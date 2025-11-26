@@ -9,7 +9,7 @@ import {
   Paper,
   InputLabel,
   FormControl,
-  Rating
+  Rating,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
 import { useFilteredMovies } from "../Action/useFilterMovies";
@@ -101,14 +101,23 @@ const FilterMovies = () => {
   const watchedSortBy = watch("sort_by");
   const watchedOrderBy = watch("order_by");
 
+  // Normalize genre and fetch movies
   useEffect(() => {
+    const normalizedGenres: string[] | undefined =
+      filters.genre === undefined
+        ? undefined
+        : Array.isArray(filters.genre)
+        ? filters.genre
+        : [filters.genre];
+
     const formattedFilters = {
       ...filters,
-      genre: filters.genre?.join(",") || undefined,
+      genre: normalizedGenres,
       sort_by: watchedSortBy || undefined,
       order_by: watchedOrderBy || undefined,
       page: currentPage,
     };
+
     fetchFilteredMovies(formattedFilters);
   }, [filters, currentPage, watchedSortBy, watchedOrderBy, fetchFilteredMovies]);
 
@@ -119,11 +128,10 @@ const FilterMovies = () => {
         ? data.genre
         : typeof data.genre === "string"
         ? [data.genre]
-        : [],
+        : undefined,
     });
   };
 
- 
   return (
     <Box sx={{ mt: 6, px: { xs: 2, sm: 3 } }}>
       <Paper
@@ -157,8 +165,6 @@ const FilterMovies = () => {
               {...register("query_term")}
               variant="filled"
               fullWidth
-              InputProps={{ style: { color: "white" } }}
-              InputLabelProps={{ style: { color: "#aaa" } }}
               sx={{ backgroundColor: "#222", borderRadius: 1 }}
             />
 
